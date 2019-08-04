@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 echo "---Prepare Server---"
 chmod -R 770 ${DATA_DIR}
 echo "---Server ready---"
