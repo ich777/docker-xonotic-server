@@ -29,7 +29,7 @@ elif [ "${GAME_VERSION}" != "$CUR_V" ]; then
 	fi
     unzip -o xonotic-${GAME_VERSION}.zip
     cd ${SERVER_DIR}/Xonotic
-    cp -f ${SERVER_DIR}/server/server.cfg ${SERVER_DIR}/Xonotic/server/server.cfg
+    cp -f ${SERVER_DIR}/data/server.cfg ${SERVER_DIR}/Xonotic/data/server.cfg
     cp -R -f ${SERVER_DIR}/Xonotic/* ${SERVER_DIR}
     cd ${SERVER_DIR}
     rm -R ${SERVER_DIR}/Xonotic
@@ -44,15 +44,14 @@ fi
 
 echo "---Prepare Server---"
 chmod -R 770 ${DATA_DIR}
-
-if grep -rq '//hostname "Xonotic $g_xonoticversion Server"' ${SERVER_DIR}/server/server.cfg; then
-	sed -i '/\/\/hostname "Xonotic $g_xonoticversion Server"/c\hostname "Xonotic Docker"	// this name will appear on the server list (the $g_xonoticversion gets replaced with the current version)' ${SERVER_DIR}/server/server.cfg
+if [ ! -f ${SERVER_DIR}/data/server.cfg ]; then
+	cp ${SERVER_DIR}/server/server.cfg ${SERVER_DIR}/data/server.cfg
+fi
+if grep -rq '//hostname "Xonotic $g_xonoticversion Server"' ${SERVER_DIR}/data/server.cfg; then
+	sed -i '/\/\/hostname "Xonotic $g_xonoticversion Server"/c\hostname "Xonotic Docker"	// this name will appear on the server list (the $g_xonoticversion gets replaced with the current version)' ${SERVER_DIR}/data/server.cfg
 fi
 echo "---Server ready---"
 
-echo "---Sleep zZz...---"
-sleep infinity
-
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/srcds_run -game ${GAME_NAME} ${GAME_PARAMS} -console +port ${GAME_PORT}
+${SERVER_DIR}/xonotic-linux64-dedicated
