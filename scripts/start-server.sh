@@ -54,4 +54,4 @@ echo "---Server ready---"
 
 echo "---Start Server---"
 cd ${SERVER_DIR}
-${SERVER_DIR}/xonotic-linux64-dedicated
+${SERVER_DIR}/xonotic-linux64-dedicated ${GAME_PARAMS}
