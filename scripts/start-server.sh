@@ -1,5 +1,5 @@
 #!/bin/bash
-CUR_V="$(find ${SERVER_DIR} -name xonoticinstalledv* | cut -d 'v' -f2)"
+CUR_V="$(find ${SERVER_DIR} -name xonoticinstalledv* | cut -d 'v' -f4)"
 
 if [ -z "$CUR_V" ]; then
 	echo "---Xonotic not found!---"
