@@ -18,7 +18,7 @@ if [ -z "$CUR_V" ]; then
     rm ${SERVER_DIR}/xonotic-${GAME_VERSION}.zip
     touch xonoticinstalledv${GAME_VERSION}
 elif [ "${GAME_VERSION}" != "$CUR_V" ]; then
-	echo "---Newer version found, installing!---"
+	echo "---Version missmatch, installing v${GAME_VERSION}!---"
 	rm ${SERVER_DIR}/xonoticinstalledv$CUR_V
 	cd ${SERVER_DIR}
 	curl -O -J -L -k ${BASIC_URL}xonotic-${GAME_VERSION}.zip
