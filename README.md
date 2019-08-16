@@ -16,7 +16,7 @@ Update Notice: If you want to update the game simply change the version number.
 | BASIC_URL | Basic Download URL | https://dl.xonotic.org/ |
 
 # Run example
-
+```
 docker run --name Xonotic -d \
    -p 3979:3979/tcp \
    -p 3979:3979/udp \
@@ -28,6 +28,7 @@ docker run --name Xonotic -d \
    --volume /mnt/user/appdata/xonotic:/serverdata/serverfiles \
    --restart=unless-stopped \
    ich777/xonotic:latest
+```
 
 This Docker was mainly created for the use with Unraid, if you don’t use Unraid you should definitely try it!
 
