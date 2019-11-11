@@ -45,7 +45,7 @@ else
 fi
 
 echo "---Prepare Server---"
-chmod -R 770 ${DATA_DIR}
+chmod -R 777 ${DATA_DIR}
 if [ ! -f ${SERVER_DIR}/data/server.cfg ]; then
 	cp ${SERVER_DIR}/server/server.cfg ${SERVER_DIR}/data/server.cfg
 fi
