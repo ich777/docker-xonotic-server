@@ -15,18 +15,17 @@ ENV GAME_PORT=26000
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
+ENV DATA_PERM=770
+ENV USER="xonotic"
 
 RUN mkdir $DATA_DIR && \
 	mkdir $SERVER_DIR && \
-	useradd -d $DATA_DIR -s /bin/bash --uid $UID --gid $GID xonotic && \
-	chown -R xonotic $DATA_DIR && \
+	useradd -d $DATA_DIR -s /bin/bash $USER && \
+	chown -R $USER $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-RUN chmod -R 770 /opt/scripts/ && \
-	chown -R xonotic /opt/scripts
-
-USER xonotic
+RUN chmod -R 770 /opt/scripts/
 
 #Server Start
-ENTRYPOINT ["/opt/scripts/start-server.sh"]
+ENTRYPOINT ["/opt/scripts/start.sh"]
