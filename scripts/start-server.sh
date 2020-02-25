@@ -1,7 +1,5 @@
 #!/bin/bash
 CUR_V="$(find ${SERVER_DIR} -name xonoticinstalledv* | cut -d 'v' -f4)"
-echo "---Setting umask to ${UMASK}---"
-umask ${UMASK}
 
 if [ -z "$CUR_V" ]; then
 	echo "---Xonotic not found!---"
@@ -45,7 +43,7 @@ else
 fi
 
 echo "---Prepare Server---"
-chmod -R 777 ${DATA_DIR}
+chmod -R ${DATA_PERM} ${DATA_DIR}
 if [ ! -f ${SERVER_DIR}/data/server.cfg ]; then
 	cp ${SERVER_DIR}/server/server.cfg ${SERVER_DIR}/data/server.cfg
 fi
