@@ -2,14 +2,15 @@
 CUR_V="$(find ${SERVER_DIR} -name xonoticinstalledv* | cut -d 'v' -f4)"
 
 if [ -z "$CUR_V" ]; then
-	echo "---Xonotic not found!---"
+	echo "---Xonotic not found, downloading, please wait...---"
 	cd ${SERVER_DIR}
-    curl -O -J -L -k ${BASIC_URL}xonotic-${GAME_VERSION}.zip
-	if [ ! -s ${SERVER_DIR}/xonotic-${GAME_VERSION}.zip ]; then
-		echo "---You probably entered a wrong version number the server zip is empty---"
-		rm xonotic-${GAME_VERSION}.zip
-		sleep infinity
-	fi
+    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/xonotic-${GAME_VERSION}.zip ${BASIC_URL}xonotic-${GAME_VERSION}.zip ; then
+    	echo "---Xonotic successfully downloaded, please wait---"
+    else
+    	echo "---Can't download Xonotic, putting server into sleep mode---"
+        rm xonotic-${GAME_VERSION}.zip
+        sleep infinity
+    fi
     unzip -o xonotic-${GAME_VERSION}.zip
     cd ${SERVER_DIR}/Xonotic
     cp -R -f ${SERVER_DIR}/Xonotic/* ${SERVER_DIR}
@@ -21,12 +22,13 @@ elif [ "${GAME_VERSION}" != "$CUR_V" ]; then
 	echo "---Version missmatch, installing v${GAME_VERSION}!---"
 	rm ${SERVER_DIR}/xonoticinstalledv$CUR_V
 	cd ${SERVER_DIR}
-	curl -O -J -L -k ${BASIC_URL}xonotic-${GAME_VERSION}.zip
-	if [ ! -s ${SERVER_DIR}/xonotic-${GAME_VERSION}.zip ]; then
-		echo "---You probably entered a wrong version number the server zip is empty---"
-		rm xonotic-${GAME_VERSION}.zip
-		sleep infinity
-	fi
+    if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${SERVER_DIR}/xonotic-${GAME_VERSION}.zip ${BASIC_URL}xonotic-${GAME_VERSION}.zip ; then
+    	echo "---Xonotic successfully downloaded, please wait---"
+    else
+    	echo "---Can't download Xonotic, putting server into sleep mode---"
+        rm xonotic-${GAME_VERSION}.zip
+        sleep infinity
+    fi
     unzip -o xonotic-${GAME_VERSION}.zip
     cd ${SERVER_DIR}/Xonotic
     cp -f ${SERVER_DIR}/data/server.cfg ${SERVER_DIR}/Xonotic/data/server.cfg
