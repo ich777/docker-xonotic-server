@@ -10,7 +10,7 @@ RUN apt-get update && \
 ENV DATA_DIR="/serverdata"
 ENV SERVER_DIR="${DATA_DIR}/serverfiles"
 ENV BASIC_URL="https://dl.xonotic.org/"
-ENV GAME_VERSION="0.8.2"
+ENV GAME_VERSION="0.8.5"
 ENV GAME_PARAMS="template"
 ENV GAME_PORT=26000
 ENV UMASK=000
