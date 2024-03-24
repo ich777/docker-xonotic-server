@@ -9,7 +9,7 @@ Update Notice: If you want to update the game simply change the version number.
 | Name | Value | Example |
 | --- | --- | --- |
 | SERVER_DIR | Folder for gamefiles | /serverdata/serverfiles |
-| GAME_PARAMS | Commandline startup parameters | [empty] |
+| GAME_PARAMS | Commandline startup parameters (For example if you want use a custom server.cfg file for your server you can append: +serverconfig server.cfg) | empty |
 | GAME_VERSION | Preferred game version | 0.8.2 |
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
