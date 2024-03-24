@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  xonotic:
+    container_name: Xonotic
+    image: ich777/xonotic:latest
+    env_file:
+      - ./default.env
+    volumes:
+      - ${XONOTIC_VOLUME}:/serverdata/serverfiles
+    ports:
+      - "3979:3979/tcp"
+      - "3979:3979/udp"
+    restart: unless-stopped
